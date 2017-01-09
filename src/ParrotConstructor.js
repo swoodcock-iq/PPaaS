@@ -39,7 +39,7 @@ ParrotConstructor.prototype.addOverlayImage = function(overlay) {
     });
 }
 
-ParrotConstructor.prototype.addFollowingOverlayImage = function(overlay, offsetX, offsetY, width, height) {
+ParrotConstructor.prototype.addFollowingOverlayImage = function(overlay, offsetX, offsetY, width, height, flipX, flipY) {
     let followingFrames = config.followingFrames;
     return this.imageFactory.get(overlay).then((image) => {
         this.parrotFrameHandlers.map((handler, index) => {
@@ -47,7 +47,8 @@ ParrotConstructor.prototype.addFollowingOverlayImage = function(overlay, offsetX
                                     followingFrames[index].x + (offsetX || 0), 
                                     followingFrames[index].y + (offsetY || 0), 
                                     width || image.width, 
-                                    height || image.height);
+                                    height || image.height,
+                                    flipX, flipY);
         })
     })
 }
